@@ -4,7 +4,7 @@ sudo: required
 
 language: python
 python:
-  - "3.7"
+  - "3.7.0"
 
 env:
   - EC2_REGION: us-east-2
@@ -16,6 +16,8 @@ install:
   - ansible-lint --version
 
   # install AWS related packages
+  - pipenv run pip install --upgrade boto
+  - pipenv run pip install --upgrade boto3
   - pipenv run pip install --upgrade awscli
   - pipenv run pip install --upgrade testinfra
 
