@@ -6,6 +6,9 @@ language: python
 python:
   - "3.7"
 
+env:
+  - EC2_REGION: us-east-2
+
 before_install:
   - git clone https://github.com/lean-delivery/ansible-lint-rules.git ~/ansible-lint-rules
 
@@ -22,7 +25,7 @@ install:
   # configure AWS CLI
   - aws configure set aws_access_key_id $AWS_ACCESS_KEY
   - aws configure set aws_secret_access_key $AWS_SECRET_KEY
-  - aws configure set default.region $DEPLOYMENT_REGION
+  - aws configure set default.region $EC2_REGION
   # show AWS CLI config
   - aws configure list
 
