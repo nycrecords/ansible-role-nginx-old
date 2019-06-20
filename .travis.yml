@@ -9,9 +9,6 @@ python:
 env:
   - EC2_REGION: us-east-2
 
-before_install:
-  - git clone https://github.com/lean-delivery/ansible-lint-rules.git ~/ansible-lint-rules
-
 install:
   - pip install pipenv
   - pipenv install --dev
@@ -30,8 +27,6 @@ install:
   - aws configure list
 
 script:
-  - yamllint . -c .yamllint
-  - ansible-lint . -c .ansible-lint
   - molecule test -s ec2
 
 notifications:
