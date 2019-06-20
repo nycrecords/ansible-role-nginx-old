@@ -1,0 +1,27 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+
+  vars:
+    - perform_proxy_setup: lookup('env','http_proxy')
+
+  tasks:
+  - name: Insert proxy profile configuration
+    template:
+      src: ../resources/templates/proxy.sh.j2
+      dest: /etc/profile.d/proxy.sh
+    when: perform_proxy_setup != ""
+
+  - name: Login to RedHat Subscription
+    redhat_subscription:
+      state: present
+      username: "{{ rhsub_username }}"
+      password: "{{ rhsub_password }}"
+      auto_attach: true
+
+  - name: Subscribe to RHSM Repos
+    rhsm_repository:
+      name: "{{ item }}"
+      state: enabled
+    with_items: "{{ repos }}"

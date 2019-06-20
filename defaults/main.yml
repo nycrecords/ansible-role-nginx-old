@@ -1,0 +1,4 @@
+---
+# defaults file for nginx
+nginx_conf_template: "nginx.conf.j2"
+nginx_vhost_template: "vhost.j2"

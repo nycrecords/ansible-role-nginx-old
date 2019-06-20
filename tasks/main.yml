@@ -1,0 +1,11 @@
+---
+# tasks file for nginx
+- name: Install Nginx 
+  yum:
+    name: rh-nginx18
+    state: present
+
+- name: Copy nginx configuration in place.
+  template:
+    src: "{{ nginx_conf_template }}"
+    dest: "{{ nginx_conf_file_path }}"

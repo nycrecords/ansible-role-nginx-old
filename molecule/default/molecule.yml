@@ -1,0 +1,38 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: instance
+    box: rhel-7.6
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  inventory:
+    group_vars:
+      all:
+        http_proxy_protocol: http
+        http_proxy_hostname: bcpxy.nycnet
+        http_proxy_port: 8080
+        https_proxy_protocol: http
+        https_proxy_hostname: bcpxy.nycnet
+        https_proxy_port: 8080
+        no_proxy: "localhost,127.0.0.1,::1"
+        rhsub_username: ${RHSM_USERNAME}
+        rhsub_password: ${RHSM_PASSWORD}
+        repos:
+          - rhel-server-rhscl-{{ ansible_distribution_major_version }}-rpms
+          - rhel-{{ ansible_distribution_major_version }}-server-optional-rpms
+verifier:
+  name: testinfra
+  options:
+    verbose: true
+  directory: ../resources/tests/
+  lint:
+    name: flake8

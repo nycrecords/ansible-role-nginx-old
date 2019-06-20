@@ -1,0 +1,15 @@
+---
+# handlers file for nginx
+- name: restart nginx
+  service: 
+    name: nginx 
+    state: restarted
+
+- name: validate nginx configuration
+  command: nginx -t -c "{{ nginx_conf_file_path }}"
+  changed_when: false
+
+- name: reload nginx
+  service: 
+    name: rh-nginx18-nginx 
+    state: reloaded
