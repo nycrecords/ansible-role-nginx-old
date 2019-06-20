@@ -27,6 +27,6 @@ install:
   - aws configure list
 
 script:
-  - molecule test -s ec2
+  - molecule --debug test -s ec2
 
 notifications:
