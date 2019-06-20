@@ -29,3 +29,9 @@ def test_nginx_vhost_example_exists(host):
     assert nginx_vhost.is_file
     assert nginx_vhost.user == "root"
     assert nginx_vhost.group == "root"
+
+
+def test_nginx_listening_http(host):
+    socket = host.socket("tcp://0.0.0.0:80")
+
+    assert socket.is_listening
