@@ -1,6 +1,6 @@
 ---
 # tasks file for nginx
-- name: Install Nginx 
+- name: Install Nginx
   yum:
     name: rh-nginx18
     state: present

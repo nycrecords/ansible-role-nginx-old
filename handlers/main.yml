@@ -1,8 +1,8 @@
 ---
 # handlers file for nginx
 - name: restart nginx
-  service: 
-    name: nginx 
+  service:
+    name: nginx
     state: restarted
 
 - name: validate nginx configuration
@@ -10,6 +10,6 @@
   changed_when: false
 
 - name: reload nginx
-  service: 
-    name: rh-nginx18-nginx 
+  service:
+    name: rh-nginx18-nginx
     state: reloaded
